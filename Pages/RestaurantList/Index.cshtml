@@ -1,0 +1,83 @@
+﻿@page
+@model AYAlab12.Pages.RestaurantList.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <style>
+        .button {
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: DodgerBlue;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px #CCC;
+        }
+
+            .button:hover {
+                background-color: #2EA9FF
+            }
+
+            .button:active {
+                background-color: #2EA9FF;
+                box-shadow: 0 2px #BBB;
+                transform: translateY(4px);
+            }
+    </style>
+</head>
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Список ресторанов</h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="Create" class="btn btn-info form-control text-white">Добавить ресторан</a>
+    </div>
+    <div class="col-12 border p-3 mt3">
+        <form method="post">
+            @if (Model.Restaurants.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            <label asp-for="Restaurants.FirstOrDefault().Name"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Restaurants.FirstOrDefault().Adress"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Restaurants.FirstOrDefault().Rating"></label>
+                        </th>
+                    </tr>
+                    @foreach(var Restaurant in Model.Restaurants)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m=>Restaurant.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m=>Restaurant.Adress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m=>Restaurant.Rating)
+                            </td>
+                            <td>
+                                <a asp-page="Delete" asp-route-id="@Restaurant.Id"class="btn btn-danger btn-sm">Delete</a>
+                                <a asp-page="Edit" asp-route-id="@Restaurant.Id" class="button">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>Нет доступных ресторанов</p>
+            }
+        </form>
+    </div>
+</div>

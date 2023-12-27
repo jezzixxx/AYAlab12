@@ -1,0 +1,56 @@
+﻿@page
+@model AYAlab12.Pages.PopularityList.EditModel
+@{
+}
+<head>
+    <style>
+        .button {
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: DodgerBlue;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px #CCC;
+        }
+
+            .button:hover {
+                background-color: #2EA9FF
+            }
+
+            .button:active {
+                background-color: #2EA9FF;
+                box-shadow: 0 2px #BBB;
+                transform: translateY(4px);
+            }
+    </style>
+</head>
+<h2>Edit Your Data</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Popularity.Id" />
+    <div class="form-group">
+        <label asp-for="Popularity.RestaurantId"></label>
+        <input asp-for="Popularity.RestaurantId" class="form-control" type="number"/>
+        <span asp-validation-for="Popularity.RestaurantId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Popularity.CommentsCount"></label>
+        <input asp-for="Popularity.CommentsCount" class="form-control" type="number"></input>
+        <span asp-validation-for="Popularity.CommentsCount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Popularity.GuestsPerDay"></label>
+        <input asp-for="Popularity.GuestsPerDay" class="form-control" type="number"></input>
+        <span asp-validation-for="Popularity.GuestsPerDay" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="button">Save</button>
+        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
